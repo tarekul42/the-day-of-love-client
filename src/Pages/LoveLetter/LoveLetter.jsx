@@ -8,6 +8,7 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import axios from "axios";
   
 
 const LoveLetter = () => {
@@ -17,7 +18,9 @@ const LoveLetter = () => {
         const name = formvalue.name.value;
         const tone = formvalue.tone.value;
         const length = formvalue.length.value;
-        console.log(name, tone, length)
+        const prompt = { name, tone, length}
+        axios.post('http://localhost:5000/generate', prompt)
+        .then(data => console.log(data))
     }
   return (
     <>
