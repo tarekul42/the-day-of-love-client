@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const user = false;
@@ -32,7 +33,7 @@ const Navbar = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Button>Login</Button>
+       <Link to="/authentication"> <Button>Login</Button></Link>
       )}
     </div>
   );
