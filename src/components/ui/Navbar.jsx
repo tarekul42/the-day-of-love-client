@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const user = false;
   return (
-    <div>
+    <div className="absolute top-0 left-0 w-full bg-background border-b py-3 text-center text-muted-foreground shadow">
       {user ? (
         <DropdownMenu>
           <DropdownMenuTrigger>
