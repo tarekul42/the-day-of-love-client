@@ -25,18 +25,18 @@ const LoveLetter = () => {
   return (
     <>
       <div className="min-h-screen content-center">
-        <h2 className="text-center text-[1.5rem]">
+        <h2 className="text-center text-[1.5rem] space-y-2 py-2">
           Craft the Perfect Love Letter in Seconds
         </h2>
         <form onSubmit={generateLoveLetter} className="mx-auto text-center w-1/4 space-y-4">
           {/* Name Input */}
-          <Input name="name" type="text" placeholder="The Letter for ....." />
+          <Input name="name" className="w-full" type="text" placeholder="The Letter for ....." />
 
           <section className="flex gap-4">
             {/* Select Tone */}
             <Select name="tone">
               <SelectTrigger>
-                <SelectValue placeholder="Your letter tone ....." />
+                <SelectValue placeholder="Your letter tone..." />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="romantic">Romantic</SelectItem>
@@ -48,7 +48,7 @@ const LoveLetter = () => {
             {/* Select Length */}
             <Select name="length">
               <SelectTrigger>
-                <SelectValue placeholder="Your letter Length ....." />
+                <SelectValue placeholder="Your letter Length.." />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="short">Short</SelectItem>

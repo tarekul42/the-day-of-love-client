@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,87 +5,68 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
+import { AuthContext } from "@/Providers/AuthProvider";
+import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React, { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  return (
-    <div className="min-h-screen content-center">
-      <Tabs defaultValue="account" className="mx-auto w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="account">Login</TabsTrigger>
-          <TabsTrigger value="password">Sign up</TabsTrigger>
-        </TabsList>
-        <TabsContent value="account">
-          <Card>
-            <CardHeader>
-              <CardDescription>
-              Welcome back! Log in to access your account and continue where you left off.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-            <div className="space-y-1">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="Enter your email here" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="current">Password</Label>
-                <Input id="current" type="password" placeholder="Give a unique password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Login</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        <TabsContent value="password">
-          <Card>
-            <CardHeader>
-              <CardDescription>
-              Create your account to get started.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-            <div className="space-y-1">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" type="text" placeholder="Enter your name here" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="Enter your email here" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="current">Password</Label>
-                <Input id="current" type="password" placeholder="Give a unique password" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="confirm">Confirm password</Label>
-                <Input id="confirm" type="password" placeholder="Re-type your given password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Sign Up</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
-      {/* my custom divider */}
-      <div className="flex mx-auto items-center my-4 w-[400px]">
-        <div className="flex-grow border-t border-gray-300"></div>
-        <span className="px-3 text-gray-500 text-sm">OR</span>
-        <div className="flex-grow border-t border-gray-300"></div>
-      </div>
-      <div className="mx-auto text-center w-[400px]">
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-      <div className="flex justify-between">
-      <Button>Continue with Google</Button>
-      <Button>Continue with Github</Button>
-      </div>
-      </div>
-    </div>
+  const from = location.state?.from?.pathname || "/";
+  console.log("state in the location login page", location.state);
+
+  const handleLogin = (e) => {
+    event.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    signIn(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      navigate(from, { replace: true });
+    });
+  };
+
+  return (
+    <form onSubmit={handleLogin}>
+      <Card>
+        <CardHeader>
+          <CardDescription>
+            Welcome back! Log in to access your account and continue where you
+            left off.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <div className="space-y-1">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Enter your email here"
+            />
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor="current">Password</Label>
+            <Input
+              id="current"
+              name="password"
+              type="password"
+              placeholder="Enter your Password here"
+            />
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button type="submit">Login</Button>
+        </CardFooter>
+      </Card>
+    </form>
   );
 };
 

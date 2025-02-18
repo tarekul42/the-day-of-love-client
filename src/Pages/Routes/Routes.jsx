@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "@/Layout/MainLayout";
 import LoveLetter from "@/Pages/LoveLetter/LoveLetter";
-import Login from "../Auth/Login/Login";
+import Authentication from "../Auth/Authentication";
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
         element: <LoveLetter/>,
       },{
         path: "authentication",
-        element: <Login />
+        element: <Authentication />
       }
     ],
   },
