@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const user = false;
+  const user = true;
   return (
     <div className="absolute top-0 left-0 w-full bg-background border-b py-3 text-center text-muted-foreground shadow">
       {user ? (
@@ -24,7 +24,9 @@ const Navbar = () => {
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <Link to="/dashboard">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            </Link>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>Billing</DropdownMenuItem>
@@ -33,7 +35,10 @@ const Navbar = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-       <Link to="/authentication"> <Button>Login</Button></Link>
+        <Link to="/authentication">
+          {" "}
+          <Button>Login</Button>
+        </Link>
       )}
     </div>
   );
