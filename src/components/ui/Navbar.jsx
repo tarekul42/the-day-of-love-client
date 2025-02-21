@@ -10,13 +10,32 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
+import { AlignJustify } from "lucide-react";
 
 const Navbar = () => {
   const user = true;
   return (
     <>
       <div className="absolute top-0 left-0 w-full bg-background border-b py-3 text-center text-muted-foreground shadow">
-        <div>{/* the drrpdown and menubar will be addded here */}</div>
+        <div className="flex justify-between items-center px-4">
+
+        <div>
+          {/* the drrpdown and menubar will be addded here */}
+
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <AlignJustify />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuItem>Subscription</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
 
         <div>
           {user ? (
@@ -46,6 +65,8 @@ const Navbar = () => {
           )}
         </div>
       </div>
+      </div>
+
     </>
   );
 };
