@@ -4,13 +4,16 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./Pages/Routes/Routes";
 import AuthProvider from "./Providers/AuthProvider";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <main className="flex-grow">
-        <RouterProvider router={router} />
-      </main>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <main className="flex-grow">
+          <RouterProvider router={router} />
+        </main>
+      </AuthProvider>
+    </ErrorBoundary>
   </StrictMode>
 );
